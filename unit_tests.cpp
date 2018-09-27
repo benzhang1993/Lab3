@@ -7,10 +7,47 @@
 #include "Stack.hpp"
 
 TEST_CASE ("A new stack is empty", "[stack]") {
-    Stack tester;
 
+    Stack tester;
     REQUIRE(tester.empty() == true);
     REQUIRE(tester.full() == false);
 }
 
-TEST_CASE ("Pushing an element to the Stack")
+TEST_CASE ("Pushing elements to the Stack") {
+
+    Stack tester;
+
+    SECTION("Pushing 1 item") {
+        tester.push(5);
+        REQUIRE(tester.top() == 5);
+        REQUIRE(tester.empty() == false);
+        REQUIRE(tester.full() == false);
+    }
+
+    SECTION("Pushing 10 items") {
+        for(int i = 0; i < 10; i++) {
+            tester.push(i);
+        }
+        REQUIRE(tester.top() == 9);
+        REQUIRE(tester.empty() == false);
+        REQUIRE(tester.full() == true);
+    }
+}
+
+TEST_CASE ("Popping elements") {
+    Stack tester;
+
+    tester.push(1);
+    tester.push(2);
+    tester.push(3);
+
+    REQUIRE(tester.top() == 3);
+
+    tester.pop();
+
+    REQUIRE(tester.top() == 2);
+
+    tester.pop();
+
+    REQUIRE(tester.top() == 1);
+}
