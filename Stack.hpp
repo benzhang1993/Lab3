@@ -47,7 +47,11 @@ public:
      * Points the top index to the second top item.
      */
     void pop() {
-        top_index--;
+        if(top_index == -1) {
+            throw "Stack is empty";
+        } else {
+            top_index--;
+        }
     }
 
     /**
@@ -87,12 +91,13 @@ public:
     /**
      * Prints the Stack out from bottom to top.
      */
-    void print() {
-        cout << "Stack: ";
+    string print() {
+        string output;
+        output += "Stack: ";
         for (int i = 0; i <= top_index; i++) {
-             cout << list[i] << " ";
+             output += to_string(list[i]) + " ";
         }
-        cout << endl;
+        return output;
     }
 };
 

@@ -13,6 +13,11 @@ TEST_CASE ("A new stack is empty", "[stack]") {
     REQUIRE(tester.full() == false);
 }
 
+TEST_CASE ("Pop from an empty Stack") {
+    Stack tester;
+    REQUIRE_THROWS(tester.pop());
+}
+
 TEST_CASE ("Pushing elements to the Stack") {
 
     Stack tester;
@@ -50,4 +55,12 @@ TEST_CASE ("Popping elements") {
     tester.pop();
 
     REQUIRE(tester.top() == 1);
+}
+
+TEST_CASE ("Print Stack from bottom to top") {
+    Stack tester;
+
+    tester.push(1);
+
+    REQUIRE(tester.print() == "Stack: 1 ");
 }
